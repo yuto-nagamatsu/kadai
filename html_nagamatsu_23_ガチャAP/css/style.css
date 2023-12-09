@@ -1,0 +1,392 @@
+@charset "utf-8";
+
+/*animation1のキーフレーム設定
+---------------------------------------------------------------------------*/
+@keyframes animation1 {
+	0% {left: -200px;}
+	100% {left: 0px;}
+}
+
+
+/*opa1のキーフレーム設定
+---------------------------------------------------------------------------*/
+@keyframes opa1 {
+	0% {opacity: 0;}
+	100% {opacity: 1;}
+}
+
+/*リセットCSS（sanitize.css）の読み込み
+---------------------------------------------------------------------------*/
+@import url("https://unpkg.com/sanitize.css");
+
+/*Font Awesomeの読み込み
+---------------------------------------------------------------------------*/
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css");
+
+
+/*テンプレート専用cssファイルの読み込み
+---------------------------------------------------------------------------*/
+@import url("animation.css");
+
+/*全体の設定
+---------------------------------------------------------------------------*/
+html,body {
+	margin: 0;padding: 0;
+	font-size: 18px;	/*基準となるフォントサイズ。下の方にある「画面幅900px以上」で基準を大きなサイズに再設定しています。*/
+	overflow-x: hidden;
+}
+
+body {
+	font-family: "Noto Serif JP", "Hiragino Mincho Pro", "ヒラギノ明朝 Pro W3", "HGS明朝E", "ＭＳ Ｐ明朝", "MS PMincho", serif;	/*フォント種類*/
+	-webkit-text-size-adjust: none;
+	letter-spacing: 0.05em;
+	background: #363134;	/*背景色*/
+	color: #ccc;		/*全体の文字色*/
+	line-height: 2;		/*行間*/
+}
+
+/*リセット*/
+figure {margin: 0;}
+dd {margin: 0;}
+nav {margin: 0;padding: 0;}
+
+/*table全般の設定*/
+table {border-collapse:collapse;}
+
+/*画像全般の設定*/
+img {border: red;max-width: 30%;height: auto;vertical-align: middle;}
+
+
+/*videoタグ*/
+video {max-width: 100%;}
+
+/*iframeタグ*/
+iframe {width: 100%;}
+
+/*ul,olタグ*/
+ul, ol {margin-bottom: 30px;}
+
+.pic{
+	height: 100vh;				/*画面に対して高さ100%*/
+	display: flex;				/*flexボックスを使う指定*/
+	justify-content: center;	/*左右の中央に配置*/
+	align-items: center;		/*天地中央に配置*/
+}
+
+
+/*リンクテキスト全般の設定
+---------------------------------------------------------------------------*/
+a {
+	color: #ccc;	/*文字色*/
+	transition: 0.3s;
+}
+a:hover {
+	color: #fff;
+}
+
+
+/*section
+---------------------------------------------------------------------------*/
+section {
+	padding: 5%;
+}
+
+
+/*背景グラデーション設定
+---------------------------------------------------------------------------*/
+.bg1 {
+	background-color:hsla(235,10%,23%,1);
+	background-image:
+	radial-gradient(at 23% 13%, hsla(0,22%,23%,1) 0px, transparent 50%),
+	radial-gradient(at 96% 4%, hsla(0,20%,28%,1) 0px, transparent 50%),
+	radial-gradient(at 10% 66%, hsla(0,17%,37%,1) 0px, transparent 50%),
+	radial-gradient(at 87% 90%, hsla(0,9%,49%,1) 0px, transparent 50%);
+}
+
+.bg2 {
+	background-color:hsla(192,8%,25%,1);
+	background-image:
+	radial-gradient(at 0% 0%, hsla(194,15%,29%,1) 0px, transparent 50%),
+	radial-gradient(at 79% 23%, hsla(186,17%,34%,1) 0px, transparent 50%),
+	radial-gradient(at 100% 95%, hsla(189,19%,39%,1) 0px, transparent 50%),
+	radial-gradient(at 22% 88%, hsla(190,12%,49%,1) 0px, transparent 50%);
+}
+
+.bg3 {
+	background-color:hsla(0,0%,14%,1);
+	background-image:
+	radial-gradient(at 100% 99%, hsla(0,0%,29%,1) 0px, transparent 50%),
+	radial-gradient(at 0% 0%, hsla(0,0%,39%,1) 0px, transparent 50%);
+}
+
+
+/*header（ロゴなどが入った最上段のブロック）
+---------------------------------------------------------------------------*/
+/*ヘッダーブロック*/
+header {
+	height: 100vh;				/*画面に対して高さ100%*/
+}
+
+#text {
+	font-family: 'Cinzel';
+	position: absolute;
+	z-index: 1;			/*画像の上にくるように*/
+	background: rgba(255,255,255,0.95);	/*背景色。255,255,255は白の事で0.95は色が95%出た状態。*/
+	border-radius: 30px;	/*角を丸くする指定*/
+	padding: 100px 50px;	/*上下、左右へのブロック内の余白*/
+	margin: 30px;			/*ブロックの外にとる余白*/
+}
+
+.gameplay{
+	text-align: center;
+	font-size: larger;
+	width: 50%;
+	height:50%;
+}
+
+/*ヘッダーのリンクテキスト*/
+header a {
+	text-decoration: none;
+	display: block;
+}
+
+/*ロゴやメニューのブロック*/
+header #text {
+	font-family: 'Cinzel';
+	position: absolute;
+	z-index: 1;			/*画像の上にくるように*/
+	background: rgba(255,255,255,0.95);	/*背景色。255,255,255は白の事で0.95は色が95%出た状態。*/
+	border-radius: 30px;	/*角を丸くする指定*/
+	padding: 10px 50px;	/*上下、左右へのブロック内の余白*/
+	margin: 30px;			/*ブロックの外にとる余白*/
+}
+
+/*ロゴ画像*/
+header #logo img {display: block;}
+header #logo {
+	margin:  auto ;
+	max-width: 200px;	/*ロゴ画像の最大幅*/
+}
+
+
+/*メイン画像
+---------------------------------------------------------------------------*/
+.mainimg-tate {
+	width: 100%;	/*幅*/
+	height: 100%;	/*高さ*/
+}
+
+/*横長画像は非表示にしておく*/
+.mainimg-yoko {display: none;}
+
+
+/*メニュー
+---------------------------------------------------------------------------*/
+/*メニュー１個あたりの設定*/
+#menubar a {
+	padding: 20px;	/*メニュー内の余白*/
+	margin: 0px;
+
+}
+
+/*マウスオン時*/
+#menubar nav a:hover {
+	letter-spacing: 0.2em;	/*文字間隔を少し広くする*/
+}
+
+
+/*フッター設定
+---------------------------------------------------------------------------*/
+footer small {font-size: 100%;}
+
+footer {
+	font-size: 0.7rem;		/*文字サイズ*/
+	text-align: center;		/*内容をセンタリング*/
+	padding: 20px;			/*ボックス内の余白*/
+}
+
+/*---------------------------------------------------------------------------
+ここから下は、画面の高さが1000px以下の場合の追加設定
+---------------------------------------------------------------------------*/
+@media screen and (max-height: 1000px) {
+
+
+/*header（ロゴなどが入った最上段のブロック）
+---------------------------------------------------------------------------*/
+/*ロゴやメニューのブロック*/
+header #text {
+	padding: 50px;	/*ブロック内の余白*/
+}
+
+
+
+
+
+/*---------------------------------------------------------------------------
+ここから下は、画面の高さが600px以下の場合の追加設定
+---------------------------------------------------------------------------*/
+@media screen and (max-height: 600px) {
+
+
+/*header（ロゴなどが入った最上段のブロック）
+---------------------------------------------------------------------------*/
+/*ロゴやメニューのブロック*/
+header #text {
+	padding: 20px 50px;	/*上下、左右へのブロック内の余白*/
+	margin: 0px;		/*ブロックの外にとる余白*/
+}
+
+/*ロゴ画像*/
+header #logo {
+	margin-bottom: 0;	/*下のマージンをなくす*/
+}
+
+
+/*メニュー
+---------------------------------------------------------------------------*/
+#menubar ul {list-style: none;margin: 0;padding: 0;}
+
+/*メニューを非表示にしておく*/
+#menubar {display: none;}
+
+/*開閉用のスタイル*/
+#menubar.db {display: block;}
+#menubar.dn {display: none;}
+
+/*メニュー１個あたりの設定*/
+#menubar a {
+	display: block;text-decoration: none;
+	text-align: center;		/*テキストを中央に*/
+	letter-spacing: 0.1em;	/*文字間隔を少しだけ広くする指定*/
+	padding: 10px;			/*メニュー内の余白*/
+}
+
+
+/*小さな端末用の設定（開閉ブロック）
+---------------------------------------------------------------------------*/
+/*メニューブロック設定*/
+.s #menubar.db {
+	position: fixed;overflow: auto;z-index: 100;
+	left: 0px;top: 0px;
+	width: 100%;
+	height: 100%;
+	padding: 70px 20px;	/*上下、左右へのブロック内の余白*/
+	background: rgba(0,0,0,0.9);		/*背景色。0,0,0は黒の事で0.9は色が90%出た状態の事。*/
+	animation: animation1 0.2s both;	/*animation.cssの、animation1を実行する。0.2sは0.2秒の事。*/
+	text-align: center;	/*内容をセンタリング*/
+	color: #fff;		/*文字色*/
+}
+.s #menubar.db a {
+	display: block;
+	color: #fff;	/*リンクテキストの文字色*/
+}
+
+
+/*３本バー（ハンバーガー）アイコン設定
+---------------------------------------------------------------------------*/
+/*開閉用のスタイル*/
+#menubar_hdr.db {display: flex;}
+#menubar_hdr.dn {display: none;}
+
+/*３本バーを囲むブロック*/
+#menubar_hdr {
+	position: fixed;z-index: 101;
+	cursor: pointer;
+	left: 20px;			/*左からの配置場所指定*/
+	top: 20px;			/*上からの配置場所指定*/
+	padding: 16px 14px;	/*上下、左右への余白*/
+	width: 46px;		/*幅（３本バーが出ている場合の幅になります）*/
+	height: 46px;		/*高さ*/
+	display: flex;					/*flexボックスを使う指定*/
+	flex-direction: column;			/*子要素（３本バー）を縦並びにする*/
+	justify-content: space-between;	/*並びかたの種類の指定*/
+	background: rgba(0,0,0,0.3);	/*背景色*/
+}
+
+/*バー１本あたりの設定*/
+#menubar_hdr span {
+	display: block;
+	transition: 0.3s;	/*アニメーションにかける時間。0.3秒。*/
+	border-top: 2px solid #fff;	/*線の幅、線種、色*/
+}
+
+/*×印が出ている状態の設定。※１本目および２本目のバーの共通設定。*/
+#menubar_hdr.ham span:nth-of-type(1),
+#menubar_hdr.ham span:nth-of-type(3) {
+	transform-origin: center center;	/*変形の起点。センターに。*/
+	width: 20px;						/*バーの幅*/
+}
+
+/*×印が出ている状態の設定。※１本目のバー。*/
+#menubar_hdr.ham span:nth-of-type(1){
+	transform: rotate(45deg) translate(3.8px, 5px);	/*回転45°と、X軸Y軸への移動距離の指定*/
+}
+
+/*×印が出ている状態の設定。※３本目のバー。*/
+#menubar_hdr.ham span:nth-of-type(3){
+	transform: rotate(-45deg) translate(3.8px, -5px);	/*回転-45°と、X軸Y軸への移動距離の指定*/
+}
+
+/*×印が出ている状態の設定。※２本目のバー。*/
+#menubar_hdr.ham span:nth-of-type(2){
+	display: none;	/*２本目は使わないので非表示にする*/
+}
+
+
+/*　※注意！　下の閉じカッコ　}　はこのブロックに必要なので、削除しないで下さい。　*/
+
+}
+
+
+/*header（ロゴなどが入った最上段のブロック）
+---------------------------------------------------------------------------*/
+/*ヘッダーブロック*/
+header {
+	display: flex;					/*flexボックスを使う指定*/
+	justify-content: space-between;	/*並びかたの種類の指定*/
+	align-items: center;			/*垂直揃えの指定。天地中央に配置されるように。*/
+	padding: 100px;					/*ヘッダー内の余白*/
+}
+
+/*ロゴやメニューのブロック*/
+header #text {
+	background: transparent;
+	position: static;margin: 0;padding: 0;border-radius: 0;
+	width: calc(50% - 100px);	/*幅。50%というのは画面に対しての幅。-100pxというのはheaderのpaddingの数字。幅が100%だと左右のバランスが悪いので、バランスを調整しています。*/
+}
+
+/*ロゴ画像*/
+header #logo {
+	max-width: 300px;	/*ロゴ画像の最大幅*/
+}
+
+
+/*メイン画像
+---------------------------------------------------------------------------*/
+.mainimg-tate {
+	border-radius: 10px;	/*角を丸くする指定*/
+	width: 50%;				/*幅*/
+}
+
+/* バトル画像の並列 */
+.field {
+	display: flex;					/*flexボックスを使う指定*/
+	justify-content: space-between;	/*並びかたの種類の指定*/
+	align-items: center;			/*垂直揃えの指定。天地中央に配置されるように。*/
+	padding: 100px;					/*ヘッダー内の余白*/
+}
+
+
+/*その他
+---------------------------------------------------------------------------*/
+.ws {width: 48%;display: inline;}
+.sh {display: none;}
+.pc {display: inline-block;}
+
+
+/*　※注意！　下の閉じカッコ　}　はこのブロックに必要なので、削除しないで下さい。　*/
+
+
+}
+
+

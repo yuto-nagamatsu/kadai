@@ -1,0 +1,373 @@
+/* ここから下に記載していく */
+@charset "utf-8";
+
+.head {
+    /* margin を設定してみよう */
+    /* padding を設定してみよう */
+    width: 100px;
+    height: 50px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    /* border: 1px #ccc8c8 solid;  */
+    align-items: center;
+    padding: 25px;
+}
+
+/* 以下、レイアウト用CSS */
+body {
+    color: white;
+    height: 100%;
+    background-color:  white;
+    font-size: 21px;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+section {
+    margin: 42px 0;
+    padding: 18px 0;
+    border-top: 1px #444 solid;
+    border-bottom: 1px #444 solid;
+    background-color: white;
+}
+.content {
+    margin: 60px;
+    /* max-width: 860px; */
+    font-size: 24px;
+}
+.head_content {
+    margin: auto;
+}
+
+.card-large {
+    height: 300px;
+}
+
+.mainvisual{
+    position:relative;
+}
+
+.center_text{
+    position: absolute;
+    transform: translate(-50%, -50%);
+    color: #FFF;
+    top: 50%;
+    left: 50%;
+    /* -ms-transform: translate(-50%,-50%); */
+    /* -webkit-transform: translate(-50%,-50%); */
+    transform: translate(-50%,-50%);
+}
+
+.main_cmt1{
+    font-weight: bold;
+    left: 50%;
+    padding: 15px;
+    font-size: 32px;
+}
+
+.main_cmt2{
+    left: 50%;
+    padding: 15px;
+    font-size: 24px;
+    text-align: center;
+}
+
+.main_text_yellow{
+    margin-top: 60px;
+    text-align: center;
+    font-size: 24px;
+    color: rgb(223, 223, 3);
+    font-weight: bold;
+}
+
+.main_text_black{
+    margin-top: 60px;
+    text-align: center;
+    font-size: 24px;
+    color: #444;
+    font-weight: bold;
+}
+
+.main_about2{
+    margin-top: 30px;
+    text-align: center;
+    font-size: 18px;
+}
+
+.about_cmt{
+    margin: 40px;
+    text-align: center;
+    font-size: 16px;
+}
+
+.about_image{
+    margin-top: 80px;
+    margin-bottom: 60px;
+    width: 270px;
+}
+
+.sub_course_title{
+    margin-top: 90px;
+    text-align: center;
+    font-size: 24px;
+    color: #444;
+    font-weight: bold;
+}
+
+.course_cmt_c{
+    margin-top: 40px;
+    margin-bottom: 60px;
+    text-align: center;
+    font-size: 16px;
+    color: #444;
+}
+.course_cmt{
+    margin-top: 30px;
+    margin-bottom: 60px;
+    margin-right: auto;
+    text-align: center;
+    font-size: 16px;
+    color: #444;
+    width: 550px;
+    /* flex-wrap: wrap; */
+    /* align-items: flex-start; */
+}
+
+.sub_course img{width: 550px;
+
+}
+
+
+.sub_course{
+    display: flex;
+}
+.about_image{
+    display: flex;
+}
+
+.main_news2{
+    margin-top: 30px;
+    margin-bottom: 60px;
+    text-align: center;
+    font-size: 16px;
+    color: #444;
+}
+
+.news_cmt1{
+    margin-left: 15pt;
+    margin-right: 15px;
+    margin-bottom: 60px;
+    font-size: 9px;
+    color: #444;
+
+}
+
+.news_list{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    font-size: 9px;
+}
+
+.information{
+    margin: auto;
+    font-size: 15px;
+}
+
+.ABC{
+    display: flex;
+    margin-left: 40%;
+}
+
+.AB{
+margin: 20px;
+text-align: left;
+margin-left: 35%;
+font-size: 15px;
+}
+
+.tr{
+    text-align: right;
+    margin: auto;
+}
+
+.news_list img{
+    width: 60%;
+    margin: auto;
+}
+
+.news_add{
+    width: 300px;
+    height: 60px;
+    margin: auto;
+    background: rgb(250, 213, 3);
+    color: white;
+    text-align: center;
+    margin-top: 60px;
+    margin-bottom: 60px;
+    padding: 15px;
+}
+
+.main_access2{
+    margin-top: 30px;
+    margin-bottom: 60px;
+    text-align: center;
+    font-size: 16px;
+    color: #444;
+}
+
+.ContactFormBody{
+    box-sizing: border-box;
+    color: #444;
+    width: 960px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin :auto ;
+    padding: 60px;
+    text-align: center;
+}
+
+.Contact-body{
+    box-sizing: border-box;
+    color: #444;
+    width: 960px;
+    margin: 1000px;
+    padding: 60px 0;
+}
+
+
+.contact-table {
+    width: 90%;
+    margin-bottom: 20px;
+    border-top: #444;
+    text-align-last: auto;
+    font-size :17px;
+  }
+  
+  .contact-item,
+  .contact-body {
+    padding: 2%;
+    border:  1px solid #ccc;
+    width:  70%; 
+  }
+
+  .contact-item {
+    text-align: left;
+    width: 30%;
+    background-color: #eee; 
+    padding-left:  5%;
+    padding-right: 5%;
+  
+  }
+
+  .contact-body {
+    width:  65%;
+  }
+.contact_cmt{
+    font-size: 16px;
+    font-weight:normal;
+}
+.contact_cmt1{
+    margin-top: 30px;
+}
+
+.contact_cmt2{
+    margin-top: 60px;
+}
+
+.contact_cmt3{
+    margin-top: 30px;
+    margin-bottom: 70px;
+}
+
+  .form-text {
+    width:  100%;
+    padding:  10px;
+    border-radius:  5px;
+    border:  1px solid #ccc;
+    appearance:  none;
+    -webkit-appearance:  none;
+    -moz-appearance:  none;
+    max-width:  400px;
+  }
+
+  .form-select {
+    width:  75%;
+    height:  40px;
+    padding:  24px;
+    border:  1px solid #ccc;
+    border-radius:  5px;
+    font-size:  25px;
+}
+  .contact-skill {
+    display:  block;
+    text-align: left;
+  }
+
+  .contact-skill + .contact-skill {
+    margin-top:  10px;
+  }
+
+  .contact-skill-txt {
+    display:  inline-block;
+    margin-left:  5px;
+    text-align: left;font-size: 18px;
+  }
+
+  .form-textarea {
+    width:  90%;
+    padding:  10px;
+    height:  00px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-align: right;
+  }
+
+  td {
+    vertical-align: top;
+    align-self: start;
+  }
+
+  /* .footer{
+    background-color: gray;
+    padding: 30px;
+    margin-top: 140px;
+    color: #fff;
+    text-align: center;
+  } */
+
+  /* .copyright{
+    background-color: gray;
+    padding: 30px;
+    margin-top: 140px;
+    color: #fff;
+    text-align: center;
+  } */
+
+  .submission{
+    width: 300px;
+    height: 60px;
+    margin: auto;
+    background: rgb(250, 213, 3);
+    color: white;
+    text-align: center;
+    margin-top: 60px;
+    margin-bottom: 60px;
+    padding: 15px;
+}
+  .copyright{
+    background-color: #444;
+    
+    padding: 30px;
+    margin-top: 140px;
+    color: #ccc;
+    text-align: center;
+    font-weight: bold;
+  }
+
+  .footer{
+    text-align: center;
+    marginauto;
+  }

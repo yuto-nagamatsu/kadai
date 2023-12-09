@@ -1,0 +1,122 @@
+* {
+  box-sizing: border-box;
+}
+
+h1 {
+  text-align: center;
+  margin: 50px 0;
+  font-size: 20px;
+}
+
+input {
+  width: 500px;
+  padding: 10px;
+  display: block;
+  margin: 0 auto 50px;
+}
+
+textarea {
+  width: 500px;
+  height: 200px;
+  padding: 10px;
+  margin: 0 auto 50px;
+  display: block;
+  resize: none;
+}
+
+button {
+  width: 200px;
+  height: 50px;
+  margin: 0 auto 50px;
+  display: block;
+  font-size: 16px;
+}
+
+#output {
+  width: 500px;
+  display: block;
+  height: 500px;
+  border: 1px solid #ccc;
+  margin: 0 auto;
+  border-radius: 8px;
+  padding: 10px;
+  /* margin: 20px; */
+  overflow: scroll ;
+}
+
+div#output div{
+  margin :20px 0;
+  background: url("https://thumb.ac-illust.com/b4/b4689e2b0b8c631814499928ee2ac4b2_t.jpeg");
+}
+
+div#output
+/* div:nth-child(odd){
+  background:pink ;
+  padding : 10px;
+  border-radius:5px;
+  margin-left: auto;
+  width:fit-content;
+}
+
+div#output
+div:nth-child(even){
+  background:beige ;
+  padding : 10px;
+  border-radius:5px;
+  width:fit-content;
+} */
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+h1 {
+  color: #333;
+  text-align: center;
+  margin: 20px 0;
+}
+
+div {
+  margin-bottom: 15px;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+}
+
+#send {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#output {
+  overflow: auto;
+  max-height: 300px;
+  border: 1px solid #ddd;
+  padding: 10px;
+}
+
+.chat-entry {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.chat-entry p {
+  margin: 5px 0;
+}

@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Gacha Image Creator</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="ガチャを引いてキャラを集めて戦おう！">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vegas/2.5.4/vegas.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div id="container">
+    <header class="bg1">
+        <div id="text">
+        <h1 id="logo"><img src="images/logo.jpg" alt="logo"></h1>
+        <!--メニュー-->
+        <div id="menubar">
+            <nav>
+                <ul>
+                    <li><a href="#about">ガチャを引く</a></li>
+                    <li><a href="#gallery">これまでのコレクションを見る</a></li>
+                    <li><a href="#battle">バトルをする</a></li>
+                </ul>
+            </nav>
+        <ul class="icons">
+        </ul>
+        </div>
+        <!--/#text-->
+        </div>
+        <!--/#menubar-->
+        <!--スライドショー-->
+        <aside class="mainimg-tate"></aside>
+        <aside class="mainimg-yoko"></aside>
+    </header>
+            <main>
+                <div id="about">
+                    <section class="up">
+                        <div class="container1">
+                        <h1>ガチャ画面</h1>
+                        <img id="randomImage" src="" alt="ランダム画像">
+                        <p id="randomText"></p>
+                        <button onclick="changeContent()">ガチャを引く</button>
+                        <button onclick="prevImage()">前の画像</button>
+                        <button onclick="nextImage()">次の画像</button>
+                        </div>
+                </section>
+                    <div id="gallery">
+                        <section class="up">
+                            <h2>ギャラリー　</h2>
+                            <div id="imagePreviewContainer">
+                            <!-- ここに過去の画像プレビューを表示 -->
+                            </div>
+                        </section>
+                        </div>
+                    </div>
+            </main>
+        <script>
+            const data = [
+            { image: "images/1.jpg", text: "酔いつぶれたニンニク" },
+            { image: "images/2.jpg", text: "普通のニンニク" },
+            { image: "images/3.jpg", text: "クールなニンニク" },
+            { image: "images/4.jpg", text: "ゴッホの描いたニンニク" },
+            { image: "images/5.jpg", text: "空を飛びそうなニンニク" },
+            { image: "images/6.jpg", text: "世界一のニンニク" },
+            { image: "images/7.jpg", text: "神々しいニンニク" },
+            { image: "images/8.jpg", text: "酔いつぶれた老人" },
+            { image: "images/9.jpg", text: "普通の老人" },
+            { image: "images/10.jpg", text: "クールな老人" },
+            { image: "images/11.jpg", text: "空を飛びそうな老人" },
+            { image: "images/12.jpg", text: "世界一の老人" },
+            { image: "images/13.jpg", text: "ゴッホの描いた老人" },
+            { image: "images/14.jpg", text: "神々しい老人" },
+            { image: "images/15.jpg", text: "酔いつぶれた美女" },
+            { image: "images/16.jpg", text: "普通の美女" },
+            { image: "images/17.jpg", text: "クールな美女" },
+            { image: "images/18.jpg", text: "空を飛びそうな美女" },
+            { image: "images/19.jpg", text: "ゴッホの描いた美女" },
+            { image: "images/20.jpg", text: "神々しい美女" },
+            { image: "images/21.jpg", text: "絶世の美女" },
+              // 他のデータを追加可能
+            ];
+        
+            let shuffledData = [...data];
+            let currentIndex = 0;
+            const randomImage = document.getElementById('randomImage');
+            const randomText = document.getElementById('randomText');
+            const imagePreviewContainer = document.getElementById('imagePreviewContainer');
+            const imagePreviewList = []; // 過去の画像を格納するリスト
+        
+            function shuffleArray(array) {
+                for (let i = array.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [array[i], array[j]] = [array[j], array[i]];
+                }
+            }
+        
+            shuffleArray(shuffledData);
+        
+            function showData(index) {
+                const currentData = shuffledData[index];
+                randomImage.src = currentData.image;
+                randomText.textContent = currentData.text;
+            }
+        
+            function changeContent() {
+                currentIndex = (currentIndex + 1) % shuffledData.length;
+                showData(currentIndex);
+                // 過去の画像をリストに追加
+                imagePreviewList.push(shuffledData[currentIndex].image);
+                // プレビューを更新
+                updateImagePreview();
+            }
+        
+            function updateImagePreview() {
+                imagePreviewContainer.innerHTML = '';
+                for (const imageUrl of imagePreviewList) {
+                    const previewImage = document.createElement('img');
+                    previewImage.src = imageUrl;
+                    imagePreviewContainer.appendChild(previewImage);
+                }
+            }
+        
+            function prevImage() {
+                if (imagePreviewList.length > 0) {
+                    currentIndex = (shuffledData.findIndex(item => item.image === imagePreviewList.pop())) || 0;
+                    showData(currentIndex);
+                    updateImagePreview();
+                }
+            }
+        
+            function nextImage() {
+                if (imagePreviewList.length > 0) {
+                    currentIndex = (shuffledData.findIndex(item => item.image === imagePreviewList.shift())) || 0;
+                    showData(currentIndex);
+                    updateImagePreview();
+                }
+                }
+                // 初期表示
+                showData(currentIndex);
+
+            </script>
+
+<h1>ガチャバトル</h1>
+<div class="gameplay">
+    <div id="battle"></div>
+    <button onclick="playGame()">ゲームをプレイ</button>
+    <p id="result"></p>
+</div>
+<div class="field">
+    <div id="player1">
+        <h2>自分</h2>
+        <img id="player1Image" src="" alt="">
+        <p id="player1Text"></p>
+    </div>
+    <div id="player2">
+        <h2>相手</h2>
+        <img id="player2Image" src="" alt="">
+        <p id="player2Text"></p>
+    </div>
+</div>
+
+
+<script>
+    const data2 = [
+        { image: "images/1.jpg", text: "酔いつぶれたニンニク" },
+        { image: "images/2.jpg", text: "普通のニンニク" },
+        { image: "images/3.jpg", text: "クールなニンニク" },
+        { image: "images/4.jpg", text: "ゴッホの描いたニンニク" },
+        { image: "images/5.jpg", text: "空を飛びそうなニンニク" },
+        { image: "images/6.jpg", text: "世界一のニンニク" },
+        { image: "images/7.jpg", text: "神々しいニンニク" },
+        { image: "images/8.jpg", text: "酔いつぶれた老人" },
+        { image: "images/9.jpg", text: "普通の老人" },
+        { image: "images/10.jpg", text: "クールな老人" },
+        { image: "images/11.jpg", text: "空を飛びそうな老人" },
+        { image: "images/12.jpg", text: "世界一の老人" },
+        { image: "images/13.jpg", text: "ゴッホの描いた老人" },
+        { image: "images/14.jpg", text: "神々しい老人" },
+        { image: "images/15.jpg", text: "酔いつぶれた美女" },
+        { image: "images/16.jpg", text: "普通の美女" },
+        { image: "images/17.jpg", text: "クールな美女" },
+        { image: "images/18.jpg", text: "空を飛びそうな美女" },
+        { image: "images/19.jpg", text: "ゴッホの描いた美女" },
+        { image: "images/20.jpg", text: "神々しい美女" },
+        { image: "images/21.jpg", text: "絶世の美女" },
+
+];
+
+    function getRandomElement(arr) {
+        const randomIndex = Math.floor(Math.random() * arr.length);
+        return arr[randomIndex];
+    }
+
+    function compareImages(item1, item2) {
+        const image1 = item1.image;
+        const image2 = item2.image;
+
+        if (image1 < image2) {
+            return -1;
+        }
+        if (image1 > image2) {
+            return 1;
+        }
+        return 0;
+    }
+
+    function playGame() {
+        const player1 = getRandomElement(data2);
+        const player2 = getRandomElement(data2);
+
+        const result = compareImages(player1, player2);
+
+        const resultText = document.getElementById('result');
+        resultText.textContent = result === 0 ? "引き分けです!" : result < 0 ? `${player1.text} が勝ちました!` : `${player2.text} が勝ちました!`;
+
+        const player1Image = document.getElementById('player1Image');
+        const player2Image = document.getElementById('player2Image');
+        const player1Text = document.getElementById('player1Text');
+        const player2Text = document.getElementById('player2Text');
+
+        player1Image.src = player1.image;
+        player2Image.src = player2.image;
+        player1Text.textContent = player1.text;
+        player2Text.textContent = player2.text;
+    }
+</script>
+        <!-- 画像生成
+        
+        
+        -->
+        <h1>自分で画像を生成する</h1>
+        <input type="text" id="textInput" placeholder="テキストを入力">
+        <button onclick="generateImage()">画像を生成</button>
+        <div id="imageContainer">
+            <img id="generatedImage" src="" alt="生成された画像">
+        </div>
+
+        <script>
+            async function generateImage() {
+                const text = document.getElementById('textInput').value;
+
+                // ここでAPIを使用してテキストから画像を生成するリクエストを送信します
+                // この部分はサードパーティのAPIに依存し、そのAPIのドキュメントに従って実装する必要があります
+
+                try {
+                    // 生成された画像をダウンロードして表示
+                    const response = await fetch('URL_TO_GENERATED_IMAGE'); // 生成された画像のURL
+                    const blob = await response.blob();
+                    const imageURL = URL.createObjectURL(blob);
+                    const generatedImage = document.getElementById('generatedImage');
+                    generatedImage.src = imageURL;
+                } catch (error) {
+                    console.error('画像の生成と表示に失敗しました: ' + error);
+                }
+            }
+        </script>
+</script>
+    <footer>
+    </footer>
+    </div>
+    <!--/#container-->
+    <!--jQueryの読み込み-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!--lightbox用jsファイルの読み込み-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.10.0/js/lightbox-plus-jquery.min.js"></script>
+    <!--スライドショー（vegas）-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vegas/2.5.4/vegas.min.js"></script>
+    <script src="js/vegas.js"></script>
+    <!--このテンプレート専用のスクリプト-->
+    <script src="js/main.js"></script>
+    <!--開閉ボタン（ハンバーガーアイコン）-->
+    <div id="menubar_hdr">
+    <span></span><span></span><span></span>
+    </div>
+    <!--ページの上部へ戻るボタン-->
+    <div class="pagetop"><a href="#"><i class="fas fa-angle-double-up"></i></a></div>
+    <!--パララックス（inview）-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/protonet-jquery.inview/1.1.2/jquery.inview.min.js"></script>
+    <script src="js/jquery.inview_set.js"></script>
+    </body>
+</html>

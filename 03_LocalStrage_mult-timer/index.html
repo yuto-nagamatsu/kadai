@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>タイマー</title>
+<style>
+    body {
+    background-color: #f5f5f5;
+    }
+    h1 {
+    text-align: center;
+    margin-top: 50px;
+    font-size: 1.5rem;
+    color: #333;
+    }
+    p {
+    text-align: center;
+    }
+    input[type="number"] {
+    display: block;
+    margin: 0 auto;
+    font-size: 1.5rem;
+    }
+    button {
+    display: block;
+    margin: 0 auto;
+    font-size: 1.0rem;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    }
+    #container {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    }
+    .timer {
+    border: 2px solid black;
+    padding: 10px;
+    width: 300px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    background-color: #fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    }
+    .timer input[type="number"] {
+    margin-top: 20px;
+    font-size: 1.5rem;
+    }
+    .timer button {
+    margin-top: 5px;
+    font-size: 1.0rem;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    }
+    .timer span {
+    font-size: 2rem;
+    color: #333;
+    }
+</style>
+</head>
+
+<body>
+    <h1>タイマー</h1>
+    <p>タイマーの数を入力してください</p>
+    <input type="number" id="input" min="1" value="1">
+    <button id="create">作成</button>
+    <div id="container"></div>
+    
+
+    <script>
+        // タイマーの数を入力
+        const input = document.getElementById("input");
+        
+        // タイマーの箱
+        const container = document.getElementById("container");
+        
+        // 作成ボタン
+        const create = document.getElementById("create");
+        
+        // ローカルストレージからデータ取得
+        const num = localStorage.getItem("num") || 0;
+        const data = JSON.parse(localStorage.getItem("data")) || [];
+        
+        // タイマーの数を反映する
+        input.value = num;
+        
+        // 作成ボタンイベント
+        create.addEventListener("click", () => {
+            // タイマーの数を取得して保存・表示
+            const n = Number(input.value);
+            localStorage.setItem("num", n);
+            showTimers(n);
+        });
+
+        // タイマーを生成する関数
+        const createTimer = (i) => {
+            // タイマーの要素を作成する
+            const timer = document.createElement("div");
+            timer.className = "timer";
+            // タイマーの設定時間を入力
+            const input = document.createElement("input");
+            input.type = "number";
+            input.min = 0;
+            input.value = data[i] ? data[i].target : 0;
+
+            // 現在の時間
+            const display = document.createElement("span");
+            display.textContent = data[i] ? data[i].current : 0;
+
+            // 開始ボタン
+            const start = document.createElement("button");
+            start.textContent = "開始";
+
+            // 一時停止ボタン
+            const pause = document.createElement("button");
+            pause.textContent = "一時停止";
+
+            // 再開ボタン
+            const resume = document.createElement("button");
+            resume.textContent = "再開";
+
+            // タリセットボタン
+            const reset = document.createElement("button");
+            reset.textContent = "リセット";
+
+            // タイマーの要素に子要素を追加する
+            timer.appendChild(input);
+            timer.appendChild(display);
+            timer.appendChild(start);
+            timer.appendChild(pause);
+            timer.appendChild(resume);
+            timer.appendChild(reset);
+
+            // タイマーのインターバルIDを保持する変数
+            let intervalId = null;
+
+            // タイマーの開始処理
+            const startTimer = () => {
+                // 設定時間を取得
+                const target = Number(input.value);
+                // 現在の時間を取得
+                let current = Number(display.textContent);
+                
+                // タイマーが動いていない場合
+                if (!intervalId) {
+                    // タイマーのインターバルIDを設定する
+                    intervalId = setInterval(() => {
+                        // 現在の時間を1減らす
+                        current--;
+                        // 現在の時間を表示する
+                        display.textContent = current;
+                        // ローカルストレージにタイマーのデータを保存する
+                        data[i] = { target, current };
+                        localStorage.setItem("data", JSON.stringify(data));
+
+                        // 現在の時間が0以下になった場合
+                        if (current <= 0) {
+                        // タイマーを停止
+                        stopTimer();
+                        
+                        // アラートを表示する
+                        /// 可能であればここに音源を追加する
+                        alert(`タイマー${i + 1}が終了しました`);
+                        }
+                    }, 1000);
+                }
+            };
+            
+            // タイマーの停止処理
+            const stopTimer = () => {
+                // タイマーが動いている場合
+                if (intervalId) {
+                // タイマーのインターバルIDをクリアする
+                clearInterval(intervalId);
+                // タイマーのインターバルIDをリセットする
+                intervalId = null;
+                }
+            };
+            
+            // タイマーのリセット処理
+            const resetTimer = () => {
+                stopTimer(); 
+                const target = Number(input.value); //止めた時間を取得
+                
+                // 現在の時間を設定時間
+                display.textContent = target;
+                // ローカルストレージにタイマーのデータを保存する
+                data[i] = { target, current: target };
+                localStorage.setItem("data", JSON.stringify(data));
+            };
+
+            ///クリックイベントまとめ
+            // 開始ボタンのクリックイベント
+            start.addEventListener("click", startTimer);
+            // 一時停止ボタンのクリックイベント
+            pause.addEventListener("click", stopTimer);
+            // 再開ボタンのクリックイベント
+            resume.addEventListener("click", startTimer);
+            // リセットボタンのクリックイベント
+            reset.addEventListener("click", resetTimer);
+            // タイマーの要素を返す
+            return timer;
+        };
+            
+        // タイマーの数だけタイマーを表示する関数
+        const showTimers = (n) => {
+            // タイマーを表示する要素を空にする
+            container.innerHTML = "";
+            // タイマーの数だけ繰り返す
+            for (let i = 0; i < n; i++) {
+                // タイマーを生成する
+                const timer = createTimer(i);
+                // タイマーを表示する要素に追加する
+                container.appendChild(timer);
+            }
+        };
+            
+        // 初期状態でタイマーを表示する
+        showTimers(num);
+    </script>
+</body>
+</html>

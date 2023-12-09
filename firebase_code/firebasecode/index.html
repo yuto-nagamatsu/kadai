@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firebase_version9_RealtimeDB(G'sACADEMY初学者用サンプル)</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <h1>チャットアプリ</h1>
+    <!-- コンテンツ表示画面 -->
+    <div>
+        <!-- 各場所にidを設定しましょう -->
+        <div>
+            <input id="uname" type="text" placeholder="名前を入力してください">
+        </div>
+        <div>
+            <textarea id="text" placeholder="障害内容を入力してください"></textarea>
+        </div>
+        <!-- <div>
+            <input id="date" type="datetime" placeholder="日付を入力してください">
+        </div> -->
+        <div>
+            <input id="number" type="text" placeholder="障害番号を入力してください"></input>
+        </div>
+        <div>
+            <input id="subnumber" type="text" placeholder="障害サブ番号を入力してください"></input>
+        </div>
+        <div>
+            <input id="status" type="text" placeholder="ステータスを入力してください"></input>
+        </div>
+        <div>
+            <textarea id="comment" placeholder="コメントを入力してください"></textarea>
+        </div>
+        
+        <button id="send">送信</button>
+        <!-- style.cssに "overflow: auto;"を書いてみましょう！※最後に -->
+        <div id="output"></div>
+    </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.0/firebase-app.js";
+        import { getDatabase, ref, push, set, onChildAdded, remove, onChildRemoved }
+            from "https://www.gstatic.com/firebasejs/9.1.0/firebase-database.js";
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app); //RealtimeDBに接続
+        const dbRef = ref(db, "chat"); //RealtimeDB内の"chat"を使う
+
+        // //データ登録(Click)
+        // $("#send").on("click",function(){
+        //     const uname = $("#uname").val();
+        //     const text = $("#text").val();
+        //     const date = $("#date").val();
+        //     const number = $("#number").val();
+        //     const status = $("#status").val();
+        //     const subnumber = $("#subnumber").val();
+        //     const comment = $("#comment").val();
+
+        //     const msg = {
+        //         uname: uname,
+        //         text: text,
+        //         date: date,
+        //         number: number,
+        //         subnumber: subnumber,
+        //         status: status,
+        //         comment: comment,
+        //     }
+
+        //     const newPostRef = push(dbRef);
+        //     set(newPostRef,msg);
+        //     $("#uname").val("");
+        //     $("#text").val("");
+        //     $("#date").val("");
+        //     $("#number").val("");
+        //     $("#subnumber").val("");
+        //     $("#status").val("");
+        //     $("#comment").val("");
+        // });
+
+        // //データ登録(Enter)
+
+        // //最初にデータ取得＆onSnapshotでリアルタイムにデータを取得
+        // onChildAdded(dbRef,function(data){
+        //     //console.log(data,"塊");
+        //     const msg = data.val();
+        //     //console.log(key,"鍵");
+        //     const key = data.key;
+
+        //     let html = `
+        //         <div class=${key}>
+        //             <p>${msg.uname}</p>
+        //             <p>${msg.text}</p>
+        //             <p>${msg.date}</p>
+        //             <p>${msg.number}</p>
+        //             <p>${msg.subnumber}</p>
+        //             <p>${msg.status}</p>
+        //             <p>${msg.comment}</p>
+        //             <p>更新日: ${new Date().toLocaleString()}</p>
+        //             <p>更新者: 自動
+        //         </div>
+        //         `
+        //     $("#output").append(html);
+        // })
+
+
+        // データ登録(Click)
+        $("#send").on("click", function () {
+            const uname = $("#uname").val();
+            const text = $("#text").val();
+            // const date = $("#date").val();
+            const number = $("#number").val();
+            const status = $("#status").val();
+            const subnumber = $("#subnumber").val();
+            const comment = $("#comment").val();
+
+            const msg = {
+                uname: uname,
+                text: text,
+                // date: date,
+                number: number,
+                subnumber: subnumber,
+                status: status,
+                comment: comment,
+            };
+
+            const newPostRef = push(dbRef);
+            set(newPostRef, msg);
+            $("#uname").val("");
+            $("#text").val("");
+            // $("#date").val("");
+            $("#number").val("");
+            $("#subnumber").val("");
+            $("#status").val("");
+            $("#comment").val("");
+        });
+
+        // データ登録(Enter)
+
+        // 最初にデータ取得＆onSnapshotでリアルタイムにデータを取得
+        onChildAdded(dbRef, function (data) {
+            const msg = data.val();
+            const key = data.key;
+
+            let html = `
+                <div class="chat-entry" data-number="${msg.number}">
+                    <p>作成者：${msg.uname}</p>
+                    <p>障害内容：${msg.text}</p>
+                    <p>障害番号：${msg.number}</p>
+                    <p>障害サブ番号${msg.subnumber}</p>
+                    <p>ステータス：${msg.status}</p>
+                    <p>コメント：${msg.comment}</p>
+                    <p>更新日: ${new Date().toLocaleString()}</p>
+                    <p>更新者: 自動</p>
+                    <textarea class="additional-comment" placeholder="追加コメントを入力してください"></textarea>
+                    <button class="add-comment-btn">追加コメント</button>
+                </div>
+            `;
+            
+
+            $("#output").append(html);
+        });
+
+        // 追加コメントボタンがクリックされた時の処理
+        $(document).on("click", ".add-comment-btn", function () {
+            const parentDiv = $(this).closest(".chat-entry");
+            const numberToMatch = parentDiv.data("number");
+            const additionalComment = parentDiv.find(".additional-comment").val();
+
+            if (additionalComment.trim() === "") {
+                alert("コメントを入力してください");
+                return;
+            }
+
+            const commentRef = ref(db, `chat/${numberToMatch}/additionalComments`);
+            push(commentRef, {
+                comment: additionalComment,
+                date: new Date().toLocaleString(),
+                updater: "自動",
+            });
+
+            parentDiv.find(".additional-comment").val("");
+
+            alert("コメントが追加されました");
+        });
+
+        
+    </script>
+</body>
+
+</html>
