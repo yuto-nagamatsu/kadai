@@ -1,0 +1,37 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+}
+
+header {
+    background: #50b894;
+    color: white;
+    padding-top: 30px;
+    min-height: 70px;
+    border-bottom: #e8491d 3px solid;
+}
+
+.navbar {
+    padding: 0;
+    margin: 0;
+}
+
+.navbar-brand {
+    float: left;
+    padding: 10px;
+    color: white;
+    text-decoration: none;
+}
+
+.jumbotron {
+    color: #2c3e50;
+    padding: 20px 20px;
+}
